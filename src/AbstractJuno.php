@@ -8,6 +8,7 @@ abstract class AbstractJuno {
 	private $sandbox;
 
 	public function options($options) {
+		
 		if(isset($options['token']) && isset($options['sandbox'])) {
 			//verificando se o ambiente é de desenvolvimento ou de produção
 			if($options['sandbox']) {

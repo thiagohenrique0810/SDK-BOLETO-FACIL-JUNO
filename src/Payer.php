@@ -1,7 +1,7 @@
 <?php
 
 
-class Pagador {
+class Payer {
 
 	private $payerName;
 	private $payerCpfCnpj;
