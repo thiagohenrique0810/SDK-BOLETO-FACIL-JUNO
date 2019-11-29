@@ -5,6 +5,7 @@ include_once('Config.php');
 
 class Charge {
 
+    private $payer;
 	private $description;
 	private $reference;
 	private $amount;
@@ -18,7 +19,6 @@ class Charge {
 	private $discountDays;
 	private $notifyPayer;
 	private $notificationUrl;
-	private $responseType;
 	private $feeSchemaToken;
 	private $splitRecipient;
 	private $paymentTypes;
@@ -29,9 +29,30 @@ class Charge {
 
 	public function create()
 	{
-		$response = sendRequest();
+		$response = sendRequest($data, 'issue-charge');
 	}
 
+
+
+    /**
+     * @return mixed
+     */
+    public function getPayer()
+    {
+        return $this->payer;
+    }
+
+    /**
+     * @param mixed $payer
+     *
+     * @return self
+     */
+    public function setPayer($payer)
+    {
+        $this->payer = $payer;
+
+        return $this;
+    }
 
     /**
      * @return mixed
@@ -296,26 +317,6 @@ class Charge {
     /**
      * @return mixed
      */
-    public function getResponseType()
-    {
-        return $this->responseType;
-    }
-
-    /**
-     * @param mixed $responseType
-     *
-     * @return self
-     */
-    public function setResponseType($responseType)
-    {
-        $this->responseType = $responseType;
-
-        return $this;
-    }
-
-    /**
-     * @return mixed
-     */
     public function getFeeSchemaToken()
     {
         return $this->feeSchemaToken;
@@ -394,222 +395,6 @@ class Charge {
     }
 
     /**
-     * @param mixed $description
-     *
-     * @return self
-     */
-    public function setDescription($description)
-    {
-        $this->description = $description;
-
-        return $this;
-    }
-
-    /**
-     * @param mixed $reference
-     *
-     * @return self
-     */
-    public function setReference($reference)
-    {
-        $this->reference = $reference;
-
-        return $this;
-    }
-
-    /**
-     * @param mixed $amount
-     *
-     * @return self
-     */
-    public function setAmount($amount)
-    {
-        $this->amount = $amount;
-
-        return $this;
-    }
-
-    /**
-     * @param mixed $totalAmount
-     *
-     * @return self
-     */
-    public function setTotalAmount($totalAmount)
-    {
-        $this->totalAmount = $totalAmount;
-
-        return $this;
-    }
-
-    /**
-     * @param mixed $dueDate
-     *
-     * @return self
-     */
-    public function setDueDate($dueDate)
-    {
-        $this->dueDate = $dueDate;
-
-        return $this;
-    }
-
-    /**
-     * @param mixed $installments
-     *
-     * @return self
-     */
-    public function setInstallments($installments)
-    {
-        $this->installments = $installments;
-
-        return $this;
-    }
-
-    /**
-     * @param mixed $maxOverdueDays
-     *
-     * @return self
-     */
-    public function setMaxOverdueDays($maxOverdueDays)
-    {
-        $this->maxOverdueDays = $maxOverdueDays;
-
-        return $this;
-    }
-
-    /**
-     * @param mixed $fine
-     *
-     * @return self
-     */
-    public function setFine($fine)
-    {
-        $this->fine = $fine;
-
-        return $this;
-    }
-
-    /**
-     * @param mixed $interest
-     *
-     * @return self
-     */
-    public function setInterest($interest)
-    {
-        $this->interest = $interest;
-
-        return $this;
-    }
-
-    /**
-     * @param mixed $discountAmount
-     *
-     * @return self
-     */
-    public function setDiscountAmount($discountAmount)
-    {
-        $this->discountAmount = $discountAmount;
-
-        return $this;
-    }
-
-    /**
-     * @param mixed $discountDays
-     *
-     * @return self
-     */
-    public function setDiscountDays($discountDays)
-    {
-        $this->discountDays = $discountDays;
-
-        return $this;
-    }
-
-    /**
-     * @param mixed $notifyPayer
-     *
-     * @return self
-     */
-    public function setNotifyPayer($notifyPayer)
-    {
-        $this->notifyPayer = $notifyPayer;
-
-        return $this;
-    }
-
-    /**
-     * @param mixed $notificationUrl
-     *
-     * @return self
-     */
-    public function setNotificationUrl($notificationUrl)
-    {
-        $this->notificationUrl = $notificationUrl;
-
-        return $this;
-    }
-
-    /**
-     * @param mixed $responseType
-     *
-     * @return self
-     */
-    public function setResponseType($responseType)
-    {
-        $this->responseType = $responseType;
-
-        return $this;
-    }
-
-    /**
-     * @param mixed $feeSchemaToken
-     *
-     * @return self
-     */
-    public function setFeeSchemaToken($feeSchemaToken)
-    {
-        $this->feeSchemaToken = $feeSchemaToken;
-
-        return $this;
-    }
-
-    /**
-     * @param mixed $splitRecipient
-     *
-     * @return self
-     */
-    public function setSplitRecipient($splitRecipient)
-    {
-        $this->splitRecipient = $splitRecipient;
-
-        return $this;
-    }
-
-    /**
-     * @param mixed $paymentTypes
-     *
-     * @return self
-     */
-    public function setPaymentTypes($paymentTypes)
-    {
-        $this->paymentTypes = $paymentTypes;
-
-        return $this;
-    }
-
-    /**
-     * @param mixed $paymentAdvance
-     *
-     * @return self
-     */
-    public function setPaymentAdvance($paymentAdvance)
-    {
-        $this->paymentAdvance = $paymentAdvance;
-
-        return $this;
-    }
-
-    /**
      * @return mixed
      */
     public function getCode()
@@ -627,6 +412,14 @@ class Charge {
         $this->code = $code;
 
         return $this;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getResponseType()
+    {
+        return $this->responseType;
     }
 
     /**

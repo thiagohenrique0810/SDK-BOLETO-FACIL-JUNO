@@ -9,7 +9,7 @@ function preparePostFields($array) {
     foreach ($array as $key => $value) {
       $params[] = $key . '=' . urlencode($value);
     }
-  
+
     return implode('&', $params);
 }
 

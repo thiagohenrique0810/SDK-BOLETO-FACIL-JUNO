@@ -1,7 +1,7 @@
 <?php
 
 
-class Endereco {
+class Address {
 
 	private $billingAddressStreet;
 	private $billingAddressNumber;

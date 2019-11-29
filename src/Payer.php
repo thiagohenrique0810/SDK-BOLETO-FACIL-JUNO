@@ -3,6 +3,7 @@
 
 class Payer {
 
+    private $address;
 	private $payerName;
 	private $payerCpfCnpj;
 	private $payerEmail;
@@ -10,6 +11,26 @@ class Payer {
 	private $payerPhone;
 	private $payerBirthDate;
 
+
+    /**
+     * @return mixed
+     */
+    public function getAddress()
+    {
+        return $this->address;
+    }
+
+    /**
+     * @param mixed $address
+     *
+     * @return self
+     */
+    public function setAddress($address)
+    {
+        $this->address = $address;
+
+        return $this;
+    }
 
     /**
      * @return mixed
