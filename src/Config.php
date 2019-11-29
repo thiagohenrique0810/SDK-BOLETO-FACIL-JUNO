@@ -1,5 +1,21 @@
 <?php
 
+/**
+ * Prepara o array enviado para o request 
+ */
+function preparePostFields($array) {
+    $params = array();
+  
+    foreach ($array as $key => $value) {
+      $params[] = $key . '=' . urlencode($value);
+    }
+  
+    return implode('&', $params);
+}
+
+/**
+* metodo para fazer o envio da request 
+*/
 function sendRequest($data, $urlRequest) 
 {
     $curl = curl_init();
@@ -14,7 +30,7 @@ function sendRequest($data, $urlRequest)
         CURLOPT_SSL_VERIFYPEER => false,
         CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
         CURLOPT_CUSTOMREQUEST => "POST",
-        CURLOPT_POSTFIELDS => $this->preparePostFields($data),
+        CURLOPT_POSTFIELDS => preparePostFields($data),
         CURLOPT_HTTPHEADER => array(
             "cache-control: no-cache",
             "content-type: application/x-www-form-urlencoded",
@@ -31,17 +47,4 @@ function sendRequest($data, $urlRequest)
     } else {
         return json_decode($response);
     }
-}
-
-/**
- * Prepara o array enviado para o request 
- */
-function preparePostFields($array) {
-    $params = array();
-  
-    foreach ($array as $key => $value) {
-      $params[] = $key . '=' . urlencode($value);
-    }
-  
-    return implode('&', $params);
 }
