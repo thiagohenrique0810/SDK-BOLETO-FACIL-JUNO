@@ -1,5 +1,6 @@
 <?php
 
+include_once('Config.php');
 include_once('Charge.php');
 include_once('Payer.php');
 include_once('Address.php');
@@ -38,6 +39,7 @@ abstract class AbstractJuno {
 		//CRIANDO OBJETO COBRANCA
 		$charge = new Charge();
 
+		$charge->setToken($this->token);
 		$charge->setDescription($data['description']);
 		$charge->setReference($data['reference']);
 		$charge->setAmount($data['amount']);
@@ -84,8 +86,12 @@ abstract class AbstractJuno {
 		$payer->setAddress($address);
 
 
-		print_r((array) $charge);
+		$response = sendRequest($charge, $this->url . 'issue-charge');
+
+		return $response;
 	}
+
+	
 
 	
 }

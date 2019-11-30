@@ -11,8 +11,6 @@ class Address {
 	private $billingAddressState;
 	private $billingAddressPostcode;
 
-	
-
     /**
      * @return mixed
      */

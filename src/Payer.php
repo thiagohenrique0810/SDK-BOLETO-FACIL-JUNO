@@ -11,7 +11,6 @@ class Payer {
 	private $payerPhone;
 	private $payerBirthDate;
 
-
     /**
      * @return mixed
      */

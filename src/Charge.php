@@ -1,10 +1,9 @@
 <?php
 
-include_once('Config.php');
-
 
 class Charge {
 
+    private $token;
     private $payer;
 	private $description;
 	private $reference;
@@ -26,13 +25,25 @@ class Charge {
 	private $code;
 	private $responseType;
 
+    /**
+     * @return mixed
+     */
+    public function getToken()
+    {
+        return $this->token;
+    }
 
-	public function create()
-	{
-		$response = sendRequest($data, 'issue-charge');
-	}
+    /**
+     * @param mixed $token
+     *
+     * @return self
+     */
+    public function setToken($token)
+    {
+        $this->token = $token;
 
-
+        return $this;
+    }
 
     /**
      * @return mixed
@@ -433,4 +444,5 @@ class Charge {
 
         return $this;
     }
+
 }

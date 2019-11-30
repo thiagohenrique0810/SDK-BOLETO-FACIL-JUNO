@@ -5,12 +5,34 @@
  */
 function preparePostFields($array) {
     $params = array();
-  
+
     foreach ($array as $key => $value) {
-      $params[] = $key . '=' . urlencode($value);
+        if(isset($value)) {
+            $params[] = removedFirstLetter($key[1]) . '=' . urlencode($value);
+        }
     }
 
     return implode('&', $params);
+}
+
+
+function objectToArray ($object) {
+    if(!is_object($object) && !is_array($object))
+        return $object;
+
+    return array_map('objectToArray', (array) $object);
+}
+
+function deepValues(array $array) {
+    $values = array();
+    foreach($array as $key => $level) {
+        if (is_array($level)) {
+            $values = array_merge($values,deepValues($level));
+        } else {
+            $values[$key] = $level;
+        }
+    }
+    return ($values);
 }
 
 /**
@@ -18,6 +40,10 @@ function preparePostFields($array) {
 */
 function sendRequest($data, $urlRequest) 
 {
+    $data = preparePostFields(deepValues(objectToArray($data)));
+
+    die(print_r($data));
+
     $curl = curl_init();
 
     curl_setopt_array($curl, array(
