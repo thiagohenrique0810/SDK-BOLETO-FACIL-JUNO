@@ -14,7 +14,7 @@ $juno->options([
 //REALIZANDO CADASTRO DE UMA NOVA COBRANCA
 $response = $juno->createCharge([
 	'description' 	=> 'essa e uma descricao de pagamento',
-	'amount'		=> 1.5,
+	'amount'		=> 5,
 	'payerName'		=> 'Thiago Henrique',
 	'payerCpfCnpj'	=> '09191332400'
 ]);

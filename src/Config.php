@@ -8,7 +8,7 @@ function preparePostFields($array) {
 
     foreach ($array as $key => $value) {
         if(isset($value)) {
-            $params[] = removedFirstLetter($key[1]) . '=' . urlencode($value);
+            $params[] =  str_word_count($key, 1)[1] . '=' . urlencode($value);
         }
     }
 
@@ -40,9 +40,10 @@ function deepValues(array $array) {
 */
 function sendRequest($data, $urlRequest) 
 {
+
     $data = preparePostFields(deepValues(objectToArray($data)));
 
-    die(print_r($data));
+    //die(print_r($data));
 
     $curl = curl_init();
 
@@ -56,7 +57,7 @@ function sendRequest($data, $urlRequest)
         CURLOPT_SSL_VERIFYPEER => false,
         CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
         CURLOPT_CUSTOMREQUEST => "POST",
-        CURLOPT_POSTFIELDS => preparePostFields($data),
+        CURLOPT_POSTFIELDS => $data,
         CURLOPT_HTTPHEADER => array(
             "cache-control: no-cache",
             "content-type: application/x-www-form-urlencoded",
