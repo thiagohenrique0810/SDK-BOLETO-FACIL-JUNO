@@ -1,7 +1,7 @@
 <?php
 
 /***********************************
-* FUNÇÃO DE CRIAR COBRANÇAS
+* FUNÇÃO DE CONSULTAS DE COBRANÇAS
 *
 ***********************************/
 
@@ -17,12 +17,11 @@ $juno->options([
 ]);
 
 //REALIZANDO CADASTRO DE UMA NOVA COBRANCA
-$response = $juno->createCharge([
-	'description' 	=> 'essa e uma descricao de pagamento',
-	'amount'		=> 5,
-	'dueDate'		=> '07/12/2019',
-	'payerName'		=> 'Thiago Henrique',
-	'payerCpfCnpj'	=> '09191332400'
+$response = $juno->paymentStatus([
+	'beginDueDate' 			=> '06/12/2019',
+	'endDueDate'			=> '30/12/2019',
+	//'beginPaymentDate'		=> '05/12/2019',
+	//'endPaymentDate'		=> '01/11/2019'
 ]);
 
 print_r($response);

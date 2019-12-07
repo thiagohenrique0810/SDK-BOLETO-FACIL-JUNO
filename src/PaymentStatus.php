@@ -4,12 +4,33 @@ include_once('Config.php');
 
 class PaymentStatus {
 
+    private $token;
 	private $beginDueDate;
 	private $endDueDate;
 	private $beginPaymentDate;
 	private $endPaymentDate;
 	private $responseType;
 	
+
+    /**
+     * @return mixed
+     */
+    public function getToken()
+    {
+        return $this->token;
+    }
+
+    /**
+     * @param mixed $token
+     *
+     * @return self
+     */
+    public function setToken($token)
+    {
+        $this->token = $token;
+
+        return $this;
+    }
 
     /**
      * @return mixed

@@ -4,6 +4,7 @@ include_once('Config.php');
 include_once('Charge.php');
 include_once('Payer.php');
 include_once('Address.php');
+include_once('PaymentStatus.php');
 
 abstract class AbstractJuno {
 
@@ -34,6 +35,9 @@ abstract class AbstractJuno {
 		return $this->url;
 	}
 
+	/**
+	* METODO PARA GERAR E ENVIAR COBRAÇA
+	*/
 	public function createCharge($data)
 	{
 		//CRIANDO OBJETO COBRANCA
@@ -92,6 +96,20 @@ abstract class AbstractJuno {
 	}
 
 	
+	public function paymentStatus($data) 
+	{
+		$paymentStatus = new PaymentStatus();
 
+		$paymentStatus->setToken($this->token);
+		$paymentStatus->setBeginDueDate($data['beginDueDate']);
+		$paymentStatus->setEndDueDate($data['endDueDate']);
+		$paymentStatus->setBeginPaymentDate($data['beginPaymentDate']);
+		$paymentStatus->setEndPaymentDate($data['endPaymentDate']);
+		$paymentStatus->setResponseType($data['responseType']);
+
+		$response = sendRequest($paymentStatus, $this->url . 'list-charges');
+
+		return $response;
+	}
 	
 }
