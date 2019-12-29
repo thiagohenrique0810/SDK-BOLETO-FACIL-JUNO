@@ -17,12 +17,8 @@ $juno->options([
 ]);
 
 //REALIZANDO CADASTRO DE UMA NOVA COBRANCA
-$response = $juno->createCharge([
-	'description' 	=> 'essa e uma descricao de pagamento',
-	'amount'		=> 15.9,
-	'dueDate'		=> date('d/m/Y'),
-	'payerName'		=> 'Thiago Henrique',
-	'payerCpfCnpj'	=> '09191332400'
+$response = $juno->cancelCharge([
+	'code'			=> '40044771'
 ]);
 
 print_r($response);

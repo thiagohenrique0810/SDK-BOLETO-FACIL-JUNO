@@ -111,5 +111,17 @@ abstract class AbstractJuno {
 
 		return $response;
 	}
+
+	public function cancelCharge($data) 
+	{
+		//CRIANDO OBJETO COBRANCA
+		$charge = new Charge();
+
+		$charge->setToken($this->token);
+		$charge->setCode($data['code']);
+		$charge->setResponseType($data['responseType']);
+
+		$response = sendRequest($charge, $this->url . 'cancel-charge');
+	}
 	
 }
