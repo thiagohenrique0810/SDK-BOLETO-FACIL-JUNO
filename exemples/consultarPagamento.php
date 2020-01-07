@@ -17,11 +17,8 @@ $juno->options([
 ]);
 
 //REALIZANDO CADASTRO DE UMA NOVA COBRANCA
-$response = $juno->paymentStatus([
-	'beginDueDate' 			=> '07/01/2020',
-	'endDueDate'			=> '30/01/2020',
-	//'beginPaymentDate'		=> '05/12/2019',
-	//'endPaymentDate'		=> '01/11/2019'
+$response = $juno->fetchPaymentDetails([
+	'paymentToken'			=> '40050500',
 ]);
 
 print_r($response);

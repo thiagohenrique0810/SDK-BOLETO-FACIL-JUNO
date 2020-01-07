@@ -10,6 +10,7 @@ class PaymentStatus {
 	private $beginPaymentDate;
 	private $endPaymentDate;
 	private $responseType;
+    private $paymentToken;
 	
 
     /**
@@ -128,6 +129,26 @@ class PaymentStatus {
     public function setResponseType($responseType)
     {
         $this->responseType = $responseType;
+
+        return $this;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getPaymentToken()
+    {
+        return $this->paymentToken;
+    }
+
+    /**
+     * @param mixed $paymentToken
+     *
+     * @return self
+     */
+    public function setPaymentToken($paymentToken)
+    {
+        $this->paymentToken = $paymentToken;
 
         return $this;
     }
