@@ -112,7 +112,7 @@ abstract class AbstractJuno {
 		return $response;
 	}
 
-	public function paymentStatus($data) 
+	public function paymentDetails($data) 
 	{
 		$paymentStatus = new PaymentStatus();
 
