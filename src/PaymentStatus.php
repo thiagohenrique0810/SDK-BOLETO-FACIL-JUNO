@@ -5,13 +5,14 @@ include_once('Config.php');
 class PaymentStatus {
 
     private $token;
+    private $id;
 	private $beginDueDate;
 	private $endDueDate;
 	private $beginPaymentDate;
 	private $endPaymentDate;
 	private $responseType;
     private $paymentToken;
-	
+
 
     /**
      * @return mixed
@@ -29,6 +30,26 @@ class PaymentStatus {
     public function setToken($token)
     {
         $this->token = $token;
+
+        return $this;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    /**
+     * @param mixed $id
+     *
+     * @return self
+     */
+    public function setId($id)
+    {
+        $this->id = $id;
 
         return $this;
     }

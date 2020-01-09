@@ -112,6 +112,19 @@ abstract class AbstractJuno {
 		return $response;
 	}
 
+	public function paymentStatus($data) 
+	{
+		$paymentStatus = new PaymentStatus();
+
+		$paymentStatus->setToken($this->token);
+		$paymentStatus->setId($data['beginDueDate']);
+		$paymentStatus->setResponseType($data['responseType']);
+
+		$response = sendRequest($paymentStatus, $this->url . 'list-charges');
+
+		return $response;
+	}
+
 	public function fetchPaymentDetails($data) 
 	{
 		$paymentStatus = new PaymentStatus();
